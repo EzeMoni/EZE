@@ -26,7 +26,7 @@ const styles = {
     position: "fixed",
     zIndex: 1,
     width: "100%",
-    background: "#fff",
+    background: "#FFF",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
@@ -38,9 +38,9 @@ const styles = {
   headerRight: {
     display: "flex",
     gap: "20px",
-    alignItems: "center",
-    fontSize: "15px",
-    fontWeight: "600",
+    alignItems: "BOTTOM",
+    fontSize: "45px",
+    fontWeight: "6000",
   },
 };
 const App = ({ isServerInfo }) => {
@@ -67,7 +67,7 @@ const App = ({ isServerInfo }) => {
                 <Main/>
             </Route>
             <Route path="/nonauthenticated">
-              <h3>Please login using the "Authenticate" button</h3>
+              <h3>Login if dem born ur papa well</h3>
             </Route>
           </Switch>
           {isAuthenticated ? <Redirect to="/main" /> : <Redirect to="/nonauthenticated" />}
@@ -77,6 +77,7 @@ const App = ({ isServerInfo }) => {
   );
 };
 
-export const Logo = () => <h4>Decentradit</h4>
+export const Logo = () => <h4>THEMONEYMAN
+</h4>
 
 export default App;
