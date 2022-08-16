@@ -1,7 +1,11 @@
+/**
+ *Submitted for verification at BscScan.com on 2022-08-16
+*/
+
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.9;
 
-contract Decentradit {
+contract projectOASIS {
 
     event PostCreated (bytes32 indexed postId, address indexed postOwner, bytes32 indexed parentId, bytes32 contentId, bytes32 categoryId);
     event ContentAdded (bytes32 indexed contentId, string contentUri);
@@ -22,7 +26,7 @@ contract Decentradit {
     mapping (bytes32 => post) postRegistry;
     mapping (address => mapping (bytes32 => bool)) voteRegistry;
 
-    function createPost(bytes32 _parentId, string calldata _contentUri, bytes32 _categoryId) external {
+    function newPost(bytes32 _parentId, string calldata _contentUri, bytes32 _categoryId) external {
         address _owner = msg.sender;
         bytes32 _contentId = keccak256(abi.encode(_contentUri));
         bytes32 _postId = keccak256(abi.encodePacked(_owner,_parentId, _contentId));
@@ -35,7 +39,7 @@ contract Decentradit {
         emit PostCreated (_postId, _owner,_parentId,_contentId,_categoryId);
     }
 
-    function voteUp(bytes32 _postId, uint8 _reputationAdded) external {
+    function like(bytes32 _postId, uint8 _reputationAdded) external {
         address _voter = msg.sender;
         bytes32 _category = postRegistry[_postId].categoryId;
         address _contributor = postRegistry[_postId].postOwner;
@@ -48,7 +52,7 @@ contract Decentradit {
         emit Voted(_postId, _contributor, _voter, reputationRegistry[_contributor][_category], reputationRegistry[_voter][_category], postRegistry[_postId].votes, true, _reputationAdded);
     }
 
-    function voteDown(bytes32 _postId, uint8 _reputationTaken) external {
+    function dislike(bytes32 _postId, uint8 _reputationTaken) external {
         address _voter = msg.sender;
         bytes32 _category = postRegistry[_postId].categoryId;
         address _contributor = postRegistry[_postId].postOwner;
